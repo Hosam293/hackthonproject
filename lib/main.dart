@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:petology/view/screens/AuthScreens/LoginScreen/SignUpScreen.dart';
+import 'package:petology/view/screens/HomeScreen/AboutScreen/AboutScreen.dart';
+import 'package:petology/view/screens/HomeScreen/AboutScreen/HelpScreen.dart';
 import 'package:petology/view/screens/HomeScreen/HomeScreen.dart';
 
 import 'view/screens/AuthScreens/LoginScreen/LoginScreen.dart';
-import 'view/screens/HomeScreen/AboutScreen/AboutScreen.dart';
 import 'view/widgets/AuthWidgets/Cubit/AuthCubit.dart';
 
 void main() {

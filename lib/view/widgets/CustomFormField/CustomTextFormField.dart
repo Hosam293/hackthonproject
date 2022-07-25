@@ -34,6 +34,7 @@ class CustomFormField extends StatelessWidget {
         side: BorderSide.none,
       ),
       child: TextFormField(
+
         onTap: onTap,
         decoration: InputDecoration(
           border:  OutlineInputBorder(

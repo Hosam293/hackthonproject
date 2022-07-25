@@ -46,7 +46,7 @@ var image;
                   borderRadius:
                   BorderRadius.circular(18.0),
                   side: BorderSide(
-                      color: borderColor!
+                      color: borderColor!,width: 2
                   ))),
           backgroundColor:
           MaterialStateProperty.all<Color>(
@@ -85,7 +85,8 @@ var image;
                 borderRadius:
                 BorderRadius.circular(18.0),
                 side: BorderSide(
-                    color: borderColor!
+                    color: borderColor!,
+                  width: 2
                 ))),
         backgroundColor:
         MaterialStateProperty.all<Color>(

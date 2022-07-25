@@ -40,7 +40,7 @@ class _MenuItemState extends State<MenuItem> {
             if (isHover)
               Container(
                 decoration: BoxDecoration(
-                  color: hPrimary,
+                  color: white,
                   borderRadius: BorderRadius.circular(30),
                 ),
                 height: 2,
