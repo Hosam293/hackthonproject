@@ -10,10 +10,14 @@ class CustomFormField extends StatelessWidget {
   TextInputType? type;
   GestureTapCallback? onTap;
   bool obscureText;
+  bool readonly;
+  double? borderRadius;
 
   CustomFormField(
       {Key? key,
       this.titleController,
+        this.readonly=false,
+        this.borderRadius=50,
       this.title,
       this.suffixIcon,
       this.prefixIcon,
@@ -30,13 +34,16 @@ class CustomFormField extends StatelessWidget {
       color: Colors.white,
       shadowColor: Colors.black45,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(50),
+        borderRadius: BorderRadius.circular(borderRadius!),
         side: BorderSide.none,
       ),
       child: TextFormField(
+        readOnly: readonly,
+
 
         onTap: onTap,
         decoration: InputDecoration(
+
           border:  OutlineInputBorder(
             borderSide: BorderSide.none
           ),

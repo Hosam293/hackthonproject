@@ -1,18 +1,26 @@
 class PetNeedsModel {
+   List<PetNeeds> petNeeds=[];
+    PetNeedsModel.fromJson(Map<String, dynamic> json) {
+      json['/static/homepage/pet-needs'].forEach((element)
+      {
+        petNeeds.add(PetNeeds.fromJson(element));
+      });
+  }
+
+
+
+
+}
+
+class PetNeeds{
   String? imageUrl;
   String? title;
 
-  PetNeedsModel({this.imageUrl, this.title});
+  PetNeeds({this.imageUrl, this.title});
 
-  PetNeedsModel.fromJson(Map<String, dynamic> json) {
+  PetNeeds.fromJson(Map<String, dynamic> json) {
     imageUrl = json['imageUrl'];
     title = json['title'];
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['imageUrl'] = this.imageUrl;
-    data['title'] = this.title;
-    return data;
-  }
 }

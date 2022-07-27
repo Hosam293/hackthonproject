@@ -7,10 +7,12 @@ Color? textColor;
 Color? borderColor;
 double?height;
 double?width;
+double?borderRadius;
 
 
 CustomButton(
       {this.textColor,
+        this.borderRadius=18,
         this.height,
         this.width,
       this.borderColor,
@@ -44,7 +46,7 @@ var image;
               RoundedRectangleBorder>(
               RoundedRectangleBorder(
                   borderRadius:
-                  BorderRadius.circular(18.0),
+                  BorderRadius.circular(borderRadius!),
                   side: BorderSide(
                       color: borderColor!,width: 2
                   ))),
@@ -83,7 +85,7 @@ var image;
             RoundedRectangleBorder>(
             RoundedRectangleBorder(
                 borderRadius:
-                BorderRadius.circular(18.0),
+                BorderRadius.circular(borderRadius!),
                 side: BorderSide(
                     color: borderColor!,
                   width: 2

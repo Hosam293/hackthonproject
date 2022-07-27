@@ -3,8 +3,9 @@ import 'package:petology/Constants/styles.dart';
 
 class MenuItem extends StatefulWidget {
   String? title;
+  GestureTapCallback? onTap;
 
-  MenuItem({required this.title});
+  MenuItem({required this.title,this.onTap});
 
   @override
   State<MenuItem> createState() => _MenuItemState();
@@ -16,7 +17,7 @@ class _MenuItemState extends State<MenuItem> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: (){},
+      onTap: widget.onTap,
       onHover: (value) {
         setState(() {
           isHover = value;
