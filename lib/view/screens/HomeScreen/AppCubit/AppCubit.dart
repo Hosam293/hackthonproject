@@ -6,6 +6,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:petology/Constants/EndPoints.dart';
 import 'package:petology/Constants/styles.dart';
 import 'package:petology/Controller/DioHelper.dart';
+import 'package:petology/model/Pets/FindModel.dart';
 import 'package:petology/model/Pets/SendFilterModel.dart';
 import 'package:petology/model/Static/HomePage/FirstSectionModel.dart';
 import 'package:petology/model/Static/HomePage/InfoModel.dart';
@@ -44,7 +45,7 @@ class AppCubit extends Cubit<AppStates> {
       emit(SocialCoverImagePickedErrorState());
     }
   }
-
+                                //****** Info Data ******//
   InfoModel? infoModel;
 
   void getInfoData() {
@@ -60,23 +61,8 @@ class AppCubit extends Cubit<AppStates> {
       emit(InfoErrorState());
     });
   }
-  // pets need
-  // PetNeedsModel? petNeedsModel;
-  //
-  // void getPetNeed() {
-  //   emit(PetNeedLoadingState());
-  //   DioHelper.getData(url: petNeedUrl, token: token).then((value) {
-  //     print(value.data);
-  //     print('sjskasjdalsdkflsdfksdfasasasdasdasdasdasdasdsd${value.data}');
-  //
-  //     petNeedsModel = PetNeedsModel.fromJson(value.data);
-  //     print('petNeedsModel${petNeedsModel!.petNeeds[0].imageUrl}');
-  //
-  //     emit(PetNeedSuccessState());
-  //   }).catchError((error) {
-  //     emit(PetNeedErrorState());
-  //   });
-  // }
+
+  //****** FIRST SECTION DATA ******//
   FirstSectionModel? firstSectionModel;
 
   void getFirstSectionData() {
@@ -92,7 +78,7 @@ class AppCubit extends Cubit<AppStates> {
       emit(FirstSectionErrorState());
     });
   }
-// How-To-FeedModel? howToFeedModel;
+  //****** HOW TO FEED DATA ******//
   HowToFeedModel? howToFeedModel;
 
   void getHowToFeedData({int index = 1}) {
@@ -108,6 +94,7 @@ class AppCubit extends Cubit<AppStates> {
       emit(HowToFeedErrorState());
     });
   }
+  //****** SEND FILTER DATA ******//
 
   SendFilterModel? sendFilterModel;
 
@@ -124,8 +111,25 @@ class AppCubit extends Cubit<AppStates> {
       emit(HowToFeedErrorState());
     });
   }
+  //****** FIND  DATA ******//
 
+  FindModelObject?  findModelObject;
 
+  void getFindData(String breed) {
+    emit(GetFindLoadingState());
+    DioHelper.getData(url: '$findByFilter', token: token,
+    query: {'breed':breed}
+    ).then((value) {
+      print(value.data);
+      print('sjskasjdalsdkflsdfksdfasasasdasdasdasdasdasdsd${value.data}');
+
+      findModelObject = FindModelObject.fromJson(value.data);
+
+      emit(GetFindSuccessState());
+    }).catchError((error) {
+      emit(GetFindErrorState());
+    });
+  }
 
 
 }

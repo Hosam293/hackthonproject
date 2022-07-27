@@ -40,7 +40,7 @@ class CustomCard extends StatelessWidget {
             width: 200,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(25),
-              color: cubit.selectedItem == index ? white : Colors.grey,
+              color: cubit.selectedItem == index ?  hSecond:white,
               boxShadow: [if(cubit.isHover)
                 BoxShadow(
                   color: Colors.black.withOpacity(0.1),

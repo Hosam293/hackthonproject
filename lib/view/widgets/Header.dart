@@ -3,6 +3,7 @@ import 'package:petology/Constants/styles.dart';
 import 'package:petology/view/screens/AuthScreens/LoginAndSignUpScreen/LoginScreen.dart';
 import 'package:petology/view/screens/AuthScreens/LoginAndSignUpScreen/SignUpScreen.dart';
 import 'package:petology/view/screens/HomeScreen/AboutScreen/AboutScreen.dart';
+import 'package:petology/view/screens/HomeScreen/AdaptionScreen/Adaption.dart';
 import 'package:petology/view/widgets/AboutWidegts/SectionFive.dart';
 import 'package:petology/view/widgets/AboutWidegts/SectionFour.dart';
 import 'package:petology/view/widgets/AuthWidgets/LoginScreen/MenuItem.dart';
@@ -46,7 +47,7 @@ class _HeaderState extends State<Header> {
                     title: 'About us',
                     onTap: () {
                      setState(() {
-                       Scrollable.ensureVisible(widget.sections![2].currentContext!);
+                       // Scrollable.ensureVisible(widget.sections![2].currentContext!);
                        if (token != null) {
                          Navigator.pushReplacement(
                              context,
@@ -62,10 +63,22 @@ class _HeaderState extends State<Header> {
                     },
                   ),
                   MenuItem(
-                    title: 'Categories',
+                    title: 'Adaption',
                     onTap: ()
                     {
-
+                      setState(() {
+                        if (token != null) {
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Adaption()));
+                        } else {
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => LoginScreen()));
+                        }
+                      });
                     },
 
                   ),
@@ -75,7 +88,7 @@ class _HeaderState extends State<Header> {
               ),
             ),
           ),
-          if (token == null)
+          if (token != null)
             Row(
               children: [
                 CustomButton(

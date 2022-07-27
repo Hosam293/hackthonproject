@@ -1,3 +1,13 @@
+class FindModelObject {
+  List<FindModel>data=[];
+  FindModelObject.fromJson(json)
+  {
+    json.forEach((element) {
+      data.add(FindModel.fromJson(element));
+    });
+  }
+}
+
 class FindModel {
   int? id;
   String? name;
@@ -20,27 +30,7 @@ class FindModel {
   User? user;
   String? category;
 
-  FindModel(
-      {this.id,
-        this.name,
-        this.image,
-        this.year,
-        this.month,
-        this.size,
-        this.breed,
-        this.gender,
-        this.hairLength,
-        this.color,
-        this.careBehavior,
-        this.houseTrained,
-        this.description,
-        this.location,
-        this.phone,
-        this.vaccinated,
-        this.categoryId,
-        this.userId,
-        this.user,
-        this.category});
+
 
   FindModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -61,7 +51,7 @@ class FindModel {
     vaccinated = json['vaccinated'];
     categoryId = json['categoryId'];
     userId = json['userId'];
-    user = json['user'] != null ? new User.fromJson(json['user']) : null;
+    user = json['user'] != null ? User.fromJson(json['user']) : null;
     category = json['category'];
   }
 

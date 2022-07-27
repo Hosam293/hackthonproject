@@ -88,7 +88,7 @@ class SectionFour extends StatelessWidget {
                     text: 'Read more',
                     fontSize: 15,
                     backColor: white,
-                    borderColor: hPrimary,
+                    borderColor: hSecond,
                     height: 20,
                     width: 40,
                     onPressed: (){},
@@ -127,6 +127,7 @@ class SectionFour extends StatelessWidget {
                       .labelSmall!
                       .copyWith(
                       fontWeight: FontWeight.bold,
+                      color:hSecond,
                       fontSize: 20),
                 ),
                 const Spacer(),

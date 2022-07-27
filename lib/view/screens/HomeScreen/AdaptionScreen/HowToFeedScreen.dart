@@ -1,3 +1,4 @@
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,8 +8,8 @@ import 'package:petology/view/screens/HomeScreen/AppCubit/AppStates.dart';
 import 'package:petology/view/widgets/Footer.dart';
 import 'package:petology/view/widgets/Header.dart';
 
-class AdaptionScreen extends StatelessWidget {
-  const AdaptionScreen({Key? key}) : super(key: key);
+class HowToFeedScreen extends StatelessWidget {
+  const HowToFeedScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -72,51 +73,55 @@ class AdaptionScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Container(
-                    width: double.infinity,
-                    color: white,
-                    child: Column(
-                      children: [
+                  ConditionalBuilder(
+                    condition: cubit.howToFeedModel != null,
+                    builder: (context)=>Container(
+                      width: double.infinity,
+                      color: white,
+                      child: Column(
+                        children: [
 
-                        Container(
-                          width: double.infinity,
-                          color: white,
-                          padding: EdgeInsets.symmetric(vertical: paddingLarge),
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: paddingLarge*2),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  '${cubit.howToFeedModel!.title}',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .labelLarge!
-                                      .copyWith(
-                                    color: black,
-                                    fontWeight: FontWeight.bold,
+                          Container(
+                            width: double.infinity,
+                            color: white,
+                            padding: EdgeInsets.symmetric(vertical: paddingLarge),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: paddingLarge*2),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    '${cubit.howToFeedModel!.title}',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .labelLarge!
+                                        .copyWith(
+                                      color: black,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
-                                ),
-                                SizedBox(
-                                  height: paddingLarge,
-                                ),
-                                Text(
-                                  '${cubit.howToFeedModel!.body}',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .labelMedium!
-                                      .copyWith(
-                                    color: black,
+                                  SizedBox(
+                                    height: paddingLarge,
                                   ),
-                                ),
+                                  Text(
+                                    '${cubit.howToFeedModel!.body}',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .labelMedium!
+                                        .copyWith(
+                                      color: black,
+                                    ),
+                                  ),
 
-                              ],
+                                ],
+                              ),
                             ),
-                          ),
-                        )
-                      ],
+                          )
+                        ],
+                      ),
                     ),
+                    fallback: (context)=> Center(child: CircularProgressIndicator()),
                   ),
 
                   Footer()

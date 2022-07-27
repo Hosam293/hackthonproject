@@ -1,3 +1,4 @@
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -62,9 +63,14 @@ List<GlobalKey> sections = [
                 body: SingleChildScrollView(
                   child: Column(
                     children: [
-                      SectionOne(
-                        body: cubit.firstSectionModel!.body,
-                        title: cubit.firstSectionModel!.title,
+
+                      ConditionalBuilder(
+                        condition: cubit.firstSectionModel != null,
+                        builder: (context)=>SectionOne(
+                          body: cubit.firstSectionModel!.body,
+                          title: cubit.firstSectionModel!.title,
+                        ),
+                        fallback: (context)=> LinearProgressIndicator(),
                       ),
                       SectionTwo(
                         key: sections[2],

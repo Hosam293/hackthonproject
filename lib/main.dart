@@ -14,7 +14,7 @@ import 'package:petology/view/widgets/AboutWidegts/SectionFive.dart';
 
 import 'Constants/styles.dart';
 import 'Controller/DioHelper.dart';
-import 'view/screens/HomeScreen/AdaptionScreen/AdaptionScreen.dart';
+import 'view/screens/HomeScreen/AdaptionScreen/HowToFeedScreen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -36,7 +36,7 @@ Future<void> main() async {
           ..getInfoData()
           ..getFirstSectionData()
           ..getHowToFeedData()
-            ..getFilterData()
+            ..getFilterData()..getFindData('breed')
 
     )
   ], child: MyApp(token: token, startScreen: startScreen)));
@@ -51,7 +51,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Flutter hackathon',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
@@ -68,7 +68,7 @@ class MyApp extends StatelessWidget {
               .copyWith(fontSize: 15, color: Colors.white),
         ),
       ),
-      home: Adaption(),
+      home: startScreen,
     );
   }
 }

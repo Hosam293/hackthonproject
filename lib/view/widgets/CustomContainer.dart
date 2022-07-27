@@ -6,7 +6,9 @@ class CustomContainer extends StatelessWidget {
 Color? backColor;
 String? dogName;
 String? sharedName;
-CustomContainer({this.backColor, this.dogName, this.sharedName});
+VoidCallback? onPressed;
+
+CustomContainer({this.backColor, this.dogName, this.sharedName,this.onPressed});
 
 
   @override
@@ -57,7 +59,7 @@ CustomContainer({this.backColor, this.dogName, this.sharedName});
             borderColor: hPrimary,
             height: 30,
             width: 60,
-            onPressed: () {},
+            onPressed:onPressed,
             textColor: const Color(0xffFFE3C5),
             borderRadius: 50,
 

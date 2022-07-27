@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:petology/Constants/styles.dart';
+import 'package:petology/model/Static/HomePage/PetNeeds.dart';
 import 'package:petology/view/screens/HomeScreen/AppCubit/AppCubit.dart';
 import 'package:petology/view/screens/HomeScreen/AppCubit/AppStates.dart';
 import 'package:petology/view/widgets/CustomButton.dart';
@@ -17,6 +18,7 @@ class SectionFive extends StatelessWidget {
       listener: (context,state){},
       builder: (context,state)
       {
+        var cubit = BlocProvider.of<AppCubit>(context);
         return Container(
           color: const Color(0xffF1F1F1),
           width: double.infinity,
@@ -55,7 +57,7 @@ class SectionFive extends StatelessWidget {
                 spacing: 50, // gap between adjacent chips
                 runSpacing: paddingLarge,
                 alignment: WrapAlignment.center,// gap between lines
-                children: List.generate(7, (index) => Container(
+                children: List.generate(petNeeds.length, (index) => Container(
                   height: 200,
                   width: 250,
                   child: Stack(
@@ -77,8 +79,8 @@ class SectionFive extends StatelessWidget {
                       Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Image.asset(
-                            'assets/icons/Group 75.png',
+                          Image.network(
+                            '${petNeeds[index].image}',
                             height: 100,
                             fit: BoxFit.cover,
                           ),
@@ -86,7 +88,7 @@ class SectionFive extends StatelessWidget {
                             height: paddingLarge /2,
                           ),
                           Text(
-                            'Pet Food',
+                            '${petNeeds[index].title}',
                             style: Theme.of(context)
                                 .textTheme
                                 .labelMedium!
