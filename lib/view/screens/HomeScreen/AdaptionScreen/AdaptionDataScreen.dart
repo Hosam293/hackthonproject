@@ -7,7 +7,42 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 class AdaptionDataScreen extends StatelessWidget {
   var pageController = PageController();
   bool isLast = false;
+  String? nameController;
+  String? firstNameController;
+  String? lastNameController;
+  String? categoryController;
+  int? monthController ;
+  int? yearController ;
+  String? sizeController ;
+  String? breedController ;
+  String? genderController ;
+  String? hairController ;
+  String? careController ;
+  bool? houseController ;
+  String? colorController ;
+  String? locationController;
+  String? phoneController ;
+  String? descriptionController;
 
+
+  AdaptionDataScreen(
+
+      {this.nameController,
+      this.firstNameController,
+      this.lastNameController,
+      this.categoryController,
+      this.monthController,
+      this.yearController,
+      this.sizeController,
+      this.breedController,
+      this.genderController,
+      this.hairController,
+      this.careController,
+      this.houseController,
+      this.colorController,
+      this.locationController,
+      this.phoneController,
+      this.descriptionController});
 
   @override
   Widget build(BuildContext context) {
@@ -126,7 +161,7 @@ class AdaptionDataScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'ELSA',
+                              '$nameController',
                               style: Theme.of(context)
                                   .textTheme
                                   .labelLarge!
@@ -141,7 +176,7 @@ class AdaptionDataScreen extends StatelessWidget {
                             Row(
                               children: [
                                 Text(
-                                  'Share by:',
+                                  'Share by: ',
                                   style: Theme.of(context)
                                       .textTheme
                                       .labelMedium!
@@ -150,7 +185,7 @@ class AdaptionDataScreen extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                  'ELSA',
+                                  '$firstNameController $lastNameController',
                                   style: Theme.of(context)
                                       .textTheme
                                       .labelLarge!
@@ -162,12 +197,12 @@ class AdaptionDataScreen extends StatelessWidget {
                                 const Spacer(),
                                 Row(
                                   children:
-                                  [
-                                    const Icon(Icons.phone,color: black,size: paddingLarge,),
-                                    const SizedBox(
+                                  const [
+                                    Icon(Icons.phone,color: black,size: paddingLarge,),
+                                    SizedBox(
                                       width: paddingLarge/2,
                                     ),
-                                    const Icon(Icons.whatsapp_outlined,color: black,size: paddingLarge,),
+                                    Icon(Icons.whatsapp_outlined,color: black,size: paddingLarge,),
                                   ],
                                 )
                               ],
@@ -176,7 +211,7 @@ class AdaptionDataScreen extends StatelessWidget {
                               height: paddingLarge,
                             ),
                             Text(
-                              'Domestic Short Hair  Fredericton, NB',
+                              'Domestic $hairController  Fredericton, NB',
                               style: Theme.of(context)
                                   .textTheme
                                   .labelMedium!
@@ -195,7 +230,7 @@ class AdaptionDataScreen extends StatelessWidget {
                                   vertical: paddingLarge/2,),
 
                               child: Text(
-                                'Adult  Female  Medium  Tabby (Brown / Chocolate)',
+                                'Adult  $genderController  $sizeController.$colorController',
                                 style: Theme.of(context)
                                     .textTheme
                                     .caption!
@@ -221,20 +256,20 @@ class AdaptionDataScreen extends StatelessWidget {
                             const SizedBox(
                               height: paddingLarge,
                             ),
-                            Text(
-                              'House Train',
+                            if (houseController==true) Text(
+                              'House Train\nYES',
                               style: Theme.of(context)
                                   .textTheme
                                   .labelMedium!
                                   .copyWith(
                                 color: black,
                               ),
-                            ),
-                            Text(
-                              'Yes',
+                            )
+                            else Text(
+                              'House Train\nNO',
                               style: Theme.of(context)
                                   .textTheme
-                                  .labelSmall!
+                                  .labelMedium!
                                   .copyWith(
                                 color: black,
                               ),
@@ -264,7 +299,7 @@ class AdaptionDataScreen extends StatelessWidget {
                               height: paddingLarge,
                             ),
                             Text(
-                              'GOOD IN A HOME WITH \nOther cats',
+                              '$careController\nOther cats',
                               style: Theme.of(context)
                                   .textTheme
                                   .labelMedium!

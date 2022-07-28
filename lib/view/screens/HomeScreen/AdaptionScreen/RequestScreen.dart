@@ -1,4 +1,3 @@
-import 'dart:html';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,54 +10,33 @@ import 'package:petology/view/widgets/Footer.dart';
 import 'package:petology/view/widgets/Header.dart';
 
 class RequestScreen extends StatelessWidget {
-
-String? nameController;
-String? firstNameController;
-String? lastNameController;
-String? categoryController;
-int? monthController ;
-int? yearController ;
-String? sizeController ;
-String? breedController ;
-String? genderController ;
-String? hairController ;
-String? careController ;
-bool? houseController ;
-String? colorController ;
-String? locationController;
-String? phoneController ;
-String? descriptionController;
-
-RequestScreen(
-      {this.nameController,
-      this.categoryController,
-      this.monthController,
-      this.yearController,
-      this.sizeController,
-      this.breedController,
-      this.genderController,
-      this.hairController,
-      this.careController,
-      this.houseController,
-      this.colorController,
-      this.locationController,
-      this.phoneController,
-      this.descriptionController});
-
+  var nameController = TextEditingController();
+  var categoryController = TextEditingController();
+  var monthController = TextEditingController();
+  var yearController = TextEditingController();
+  var sizeController = TextEditingController();
+  var breedController = TextEditingController();
+  var genderController = TextEditingController();
+  var hairController = TextEditingController();
+  var careController = TextEditingController();
+  var houseController = TextEditingController();
+  var colorController = TextEditingController();
+  var locationController = TextEditingController();
+  var phoneController = TextEditingController();
+  var descriptionController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AppCubit,AppStates>(
       listener: (context,state){},
       builder: (context,state)
       {
+        var cubit = BlocProvider.of<AppCubit>(context);
         return Scaffold(
-          backgroundColor: white,
           body:SafeArea(
             child: SingleChildScrollView(
               child: Column(
                 children: [
                   Header(),
-
                   const SizedBox(
                     height: paddingLarge,
                   ),
@@ -76,8 +54,8 @@ RequestScreen(
                       child: Column(
                         children: [
                           const Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child:   Text(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text(
                               "Request",
                               style:
                               TextStyle(
@@ -90,7 +68,7 @@ RequestScreen(
                             height:paddingLarge,
                           ),
                           const Image(
-                            image: const AssetImage(
+                            image: AssetImage(
                                 "assets/icons/Mask Group 1.png"
                             ),
                           ),
@@ -98,7 +76,7 @@ RequestScreen(
                             height: paddingLarge,
                           ),
                           CustomFormField(
-                            title: 'name $nameController',
+                            title: 'Name',
                             validator: (value) {
                               if (value!.isEmpty) {
                                 return 'Please enter some text';
@@ -107,13 +85,13 @@ RequestScreen(
                             },
                             type: TextInputType.text,
                             onTap: () {},
-                            readonly: true,
+                            titleController: nameController,
                           ),
                           const SizedBox(
                             height: paddingLarge,
                           ),
                           CustomFormField(
-                            title: 'category $categoryController',
+                            title: 'Category',
                             validator: (value) {
                               if (value!.isEmpty) {
                                 return 'Please enter some text';
@@ -122,7 +100,30 @@ RequestScreen(
                             },
                             type: TextInputType.text,
                             onTap: () {},
+                            titleController: categoryController,
                             readonly: true,
+                            suffixIcon: DropdownButton<String>(
+                              items: <String>['1', '2'].map((String value) {
+                                return DropdownMenuItem<String>(
+                                  onTap: () {
+                                    categoryController.text = value;
+                                  },
+                                  value: value,
+                                  child: Text(value),
+                                );
+
+                              }).toList(),
+                              icon: const Icon(Icons.arrow_drop_down),
+                              elevation: 0,
+                              autofocus: false,
+                              underline: Container(),
+
+
+
+
+                              onChanged: (_) {},
+
+                            ),
                           ),
                           const SizedBox(
                             height: paddingLarge,
@@ -132,7 +133,7 @@ RequestScreen(
                             [
                               Expanded(
                                 child: CustomFormField(
-                                  title: 'year $yearController',
+                                  title: 'Year',
                                   validator: (value) {
                                     if (value!.isEmpty) {
                                       return 'Please enter some text';
@@ -141,7 +142,30 @@ RequestScreen(
                                   },
                                   type: TextInputType.text,
                                   onTap: () {},
+                                  titleController: yearController,
                                   readonly: true,
+                                  suffixIcon: DropdownButton<String>(
+                                    items: cubit.sendFilterModel!.ages!.map((String value) {
+                                      return DropdownMenuItem<String>(
+                                        onTap: () {
+                                          yearController.text = value;
+                                        },
+                                        value: value,
+                                        child: Text(value),
+                                      );
+
+                                    }).toList(),
+                                    icon: const Icon(Icons.arrow_drop_down),
+                                    elevation: 0,
+                                    autofocus: false,
+                                    underline: Container(),
+
+
+
+
+                                    onChanged: (_) {},
+
+                                  ),
                                 ),
                               ),
                               const SizedBox(
@@ -149,7 +173,7 @@ RequestScreen(
                               ),
                               Expanded(
                                 child: CustomFormField(
-                                  title: 'month $monthController',
+                                  title: 'month',
                                   validator: (value) {
                                     if (value!.isEmpty) {
                                       return 'Please enter some text';
@@ -158,7 +182,30 @@ RequestScreen(
                                   },
                                   type: TextInputType.text,
                                   onTap: () {},
+                                  titleController: monthController,
                                   readonly: true,
+                                  suffixIcon: DropdownButton<String>(
+                                    items: <String>['A', 'B', 'C', 'D'].map((String value) {
+                                      return DropdownMenuItem<String>(
+                                        onTap: () {
+                                          monthController.text = value;
+                                        },
+                                        value: value,
+                                        child: Text(value),
+                                      );
+
+                                    }).toList(),
+                                    icon: const Icon(Icons.arrow_drop_down),
+                                    elevation: 0,
+                                    autofocus: false,
+                                    underline: Container(),
+
+
+
+
+                                    onChanged: (_) {},
+
+                                  ),
                                 ),
                               ),
 
@@ -172,7 +219,7 @@ RequestScreen(
                             [
                               Expanded(
                                 child: CustomFormField(
-                                  title: 'breed $breedController',
+                                  title: 'Size',
                                   validator: (value) {
                                     if (value!.isEmpty) {
                                       return 'Please enter some text';
@@ -181,7 +228,30 @@ RequestScreen(
                                   },
                                   type: TextInputType.text,
                                   onTap: () {},
+                                  titleController: sizeController,
                                   readonly: true,
+                                  suffixIcon: DropdownButton<String>(
+                                    items: <String>['A', 'B', 'C', 'D'].map((String value) {
+                                      return DropdownMenuItem<String>(
+                                        onTap: () {
+                                          sizeController.text = value;
+                                        },
+                                        value: value,
+                                        child: Text(value),
+                                      );
+
+                                    }).toList(),
+                                    icon: const Icon(Icons.arrow_drop_down),
+                                    elevation: 0,
+                                    autofocus: false,
+                                    underline: Container(),
+
+
+
+
+                                    onChanged: (_) {},
+
+                                  ),
                                 ),
                               ),
                               const SizedBox(
@@ -189,7 +259,7 @@ RequestScreen(
                               ),
                               Expanded(
                                 child: CustomFormField(
-                                  title: 'size $sizeController',
+                                  title: 'Breed',
                                   validator: (value) {
                                     if (value!.isEmpty) {
                                       return 'Please enter some text';
@@ -198,7 +268,30 @@ RequestScreen(
                                   },
                                   type: TextInputType.text,
                                   onTap: () {},
+                                  titleController: breedController,
                                   readonly: true,
+                                  suffixIcon: DropdownButton<String>(
+                                    items: <String>['A', 'B', 'C', 'D'].map((String value) {
+                                      return DropdownMenuItem<String>(
+                                        onTap: () {
+                                          breedController.text = value;
+                                        },
+                                        value: value,
+                                        child: Text(value),
+                                      );
+
+                                    }).toList(),
+                                    icon: const Icon(Icons.arrow_drop_down),
+                                    elevation: 0,
+                                    autofocus: false,
+                                    underline: Container(),
+
+
+
+
+                                    onChanged: (_) {},
+
+                                  ),
                                 ),
                               ),
 
@@ -212,7 +305,7 @@ RequestScreen(
                             [
                               Expanded(
                                 child: CustomFormField(
-                                  title: 'Color $colorController',
+                                  title: 'Gender',
                                   validator: (value) {
                                     if (value!.isEmpty) {
                                       return 'Please enter some text';
@@ -221,7 +314,30 @@ RequestScreen(
                                   },
                                   type: TextInputType.text,
                                   onTap: () {},
+                                  titleController: genderController,
                                   readonly: true,
+                                  suffixIcon: DropdownButton<String>(
+                                    items: <String>['A', 'B', 'C', 'D'].map((String value) {
+                                      return DropdownMenuItem<String>(
+                                        onTap: () {
+                                          genderController.text = value;
+                                        },
+                                        value: value,
+                                        child: Text(value),
+                                      );
+
+                                    }).toList(),
+                                    icon: const Icon(Icons.arrow_drop_down),
+                                    elevation: 0,
+                                    autofocus: false,
+                                    underline: Container(),
+
+
+
+
+                                    onChanged: (_) {},
+
+                                  ),
                                 ),
                               ),
                               const SizedBox(
@@ -229,7 +345,7 @@ RequestScreen(
                               ),
                               Expanded(
                                 child: CustomFormField(
-                                  title: 'Breed $breedController',
+                                  title: 'Breed',
                                   validator: (value) {
                                     if (value!.isEmpty) {
                                       return 'Please enter some text';
@@ -238,7 +354,30 @@ RequestScreen(
                                   },
                                   type: TextInputType.text,
                                   onTap: () {},
+                                  titleController: breedController,
                                   readonly: true,
+                                  suffixIcon: DropdownButton<String>(
+                                    items: <String>['A', 'B', 'C', 'D'].map((String value) {
+                                      return DropdownMenuItem<String>(
+                                        onTap: () {
+                                          breedController.text = value;
+                                        },
+                                        value: value,
+                                        child: Text(value),
+                                      );
+
+                                    }).toList(),
+                                    icon: const Icon(Icons.arrow_drop_down),
+                                    elevation: 0,
+                                    autofocus: false,
+                                    underline: Container(),
+
+
+
+
+                                    onChanged: (_) {},
+
+                                  ),
                                 ),
                               ),
 
@@ -252,7 +391,7 @@ RequestScreen(
                             [
                               Expanded(
                                 child: CustomFormField(
-                                  title: 'Hair $hairController',
+                                  title: 'Hair Lenght',
                                   validator: (value) {
                                     if (value!.isEmpty) {
                                       return 'Please enter some text';
@@ -261,7 +400,30 @@ RequestScreen(
                                   },
                                   type: TextInputType.text,
                                   onTap: () {},
+                                  titleController: hairController,
                                   readonly: true,
+                                  suffixIcon: DropdownButton<String>(
+                                    items: <String>['A', 'B', 'C', 'D'].map((String value) {
+                                      return DropdownMenuItem<String>(
+                                        onTap: () {
+                                          hairController.text = value;
+                                        },
+                                        value: value,
+                                        child: Text(value),
+                                      );
+
+                                    }).toList(),
+                                    icon: const Icon(Icons.arrow_drop_down),
+                                    elevation: 0,
+                                    autofocus: false,
+                                    underline: Container(),
+
+
+
+
+                                    onChanged: (_) {},
+
+                                  ),
                                 ),
                               ),
                               const SizedBox(
@@ -269,7 +431,7 @@ RequestScreen(
                               ),
                               Expanded(
                                 child: CustomFormField(
-                                  title: 'Care $careController',
+                                  title: 'Care',
                                   validator: (value) {
                                     if (value!.isEmpty) {
                                       return 'Please enter some text';
@@ -278,7 +440,30 @@ RequestScreen(
                                   },
                                   type: TextInputType.text,
                                   onTap: () {},
+                                  titleController: careController,
                                   readonly: true,
+                                  suffixIcon: DropdownButton<String>(
+                                    items: <String>['A', 'B', 'C', 'D'].map((String value) {
+                                      return DropdownMenuItem<String>(
+                                        onTap: () {
+                                          careController.text = value;
+                                        },
+                                        value: value,
+                                        child: Text(value),
+                                      );
+
+                                    }).toList(),
+                                    icon: const Icon(Icons.arrow_drop_down),
+                                    elevation: 0,
+                                    autofocus: false,
+                                    underline: Container(),
+
+
+
+
+                                    onChanged: (_) {},
+
+                                  ),
                                 ),
                               ),
 
@@ -292,7 +477,7 @@ RequestScreen(
                             [
                               Expanded(
                                 child: CustomFormField(
-                                  title: 'Housed $houseController',
+                                  title: 'House Trained',
                                   validator: (value) {
                                     if (value!.isEmpty) {
                                       return 'Please enter some text';
@@ -301,7 +486,30 @@ RequestScreen(
                                   },
                                   type: TextInputType.text,
                                   onTap: () {},
+                                  titleController: houseController,
                                   readonly: true,
+                                  suffixIcon: DropdownButton<String>(
+                                    items: <String>['A', 'B', 'C', 'D'].map((String value) {
+                                      return DropdownMenuItem<String>(
+                                        onTap: () {
+                                          houseController.text = value;
+                                        },
+                                        value: value,
+                                        child: Text(value),
+                                      );
+
+                                    }).toList(),
+                                    icon: const Icon(Icons.arrow_drop_down),
+                                    elevation: 0,
+                                    autofocus: false,
+                                    underline: Container(),
+
+
+
+
+                                    onChanged: (_) {},
+
+                                  ),
                                 ),
                               ),
                               const SizedBox(
@@ -309,7 +517,7 @@ RequestScreen(
                               ),
                               Expanded(
                                 child: CustomFormField(
-                                  title: 'Color $colorController',
+                                  title: 'Color',
                                   validator: (value) {
                                     if (value!.isEmpty) {
                                       return 'Please enter some text';
@@ -318,6 +526,7 @@ RequestScreen(
                                   },
                                   type: TextInputType.text,
                                   onTap: () {},
+                                  titleController: colorController,
                                   readonly: true,
 
                                 ),
@@ -341,7 +550,7 @@ RequestScreen(
                             ),
                           ),
                           CustomFormField(
-                            title: 'Location $locationController',
+                            title: 'Location',
                             validator: (value) {
                               if (value!.isEmpty) {
                                 return 'Please enter some text';
@@ -350,13 +559,36 @@ RequestScreen(
                             },
                             type: TextInputType.streetAddress,
                             onTap: () {},
+                            titleController: locationController,
                             readonly: true,
+                            suffixIcon: DropdownButton<String>(
+                              items: <String>['A', 'B', 'C', 'D'].map((String value) {
+                                return DropdownMenuItem<String>(
+                                  onTap: () {
+                                    locationController.text = value;
+                                  },
+                                  value: value,
+                                  child: Text(value),
+                                );
+
+                              }).toList(),
+                              icon: const Icon(Icons.arrow_drop_down),
+                              elevation: 0,
+                              autofocus: false,
+                              underline: Container(),
+
+
+
+
+                              onChanged: (_) {},
+
+                            ),
                           ),
                           const SizedBox(
                             height: paddingLarge,
                           ),
                           CustomFormField(
-                            title: 'Phone $phoneController',
+                            title: 'Phone Number',
                             validator: (value) {
                               if (value!.isEmpty) {
                                 return 'Please enter some text';
@@ -365,7 +597,7 @@ RequestScreen(
                             },
                             type: TextInputType.phone,
                             onTap: () {},
-                            readonly: true,
+                            titleController: phoneController,
                           ),
                           const SizedBox(
                             height: paddingLarge,
@@ -373,7 +605,7 @@ RequestScreen(
                           Container(
                             height: 130,
                             child: CustomFormField(
-                              title: '$descriptionController',
+                              title: 'description',
                               validator: (value) {
                                 if (value!.isEmpty) {
                                   return 'Please enter some text';
@@ -382,7 +614,7 @@ RequestScreen(
                               },
                               type: TextInputType.text,
                               onTap: () {},
-                              readonly: true,
+                              titleController: descriptionController,
                             ),
                           ),
                           const SizedBox(
@@ -432,6 +664,7 @@ RequestScreen(
           ),
         );
       },
+
     );
   }
 }

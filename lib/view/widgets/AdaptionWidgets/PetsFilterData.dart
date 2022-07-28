@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:petology/Constants/styles.dart';
+import 'package:petology/view/screens/HomeScreen/AdaptionScreen/AdaptionDataScreen.dart';
 import 'package:petology/view/screens/HomeScreen/AdaptionScreen/RequestScreen.dart';
 import 'package:petology/view/screens/HomeScreen/AppCubit/AppCubit.dart';
 import 'package:petology/view/widgets/CustomContainer.dart';
@@ -34,7 +35,7 @@ class PetsFilterData extends StatelessWidget {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => RequestScreen(
+                  builder: (context) => AdaptionDataScreen(
                     breedController:cubit.findModelObject!.data[index].breed ,
                     careController:cubit.findModelObject!.data[index].careBehavior ,
                     categoryController: cubit.findModelObject!.data[index].category ,
@@ -49,7 +50,6 @@ class PetsFilterData extends StatelessWidget {
                     phoneController: cubit.findModelObject!.data[index].phone ,
                     sizeController: cubit.findModelObject!.data[index].size ,
                     yearController: cubit.findModelObject!.data[index].year ,
-
                   ),
                 ),
               );

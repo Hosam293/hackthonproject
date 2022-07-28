@@ -16,7 +16,7 @@ class SendFilterModel {
     size = json['size'].cast<String>();
     goodWith = json['goodWith'].cast<String>();
     gender =
-    json['gender'] != null ? new Gender.fromJson(json['gender']) : null;
+    json['gender'] != null ?  Gender.fromJson(json['gender']) : null;
     colors = json['colors'].cast<String>();
     hairLength = json['hairLength'].cast<String>();
     behaviour = json['behaviour'].cast<String>();

@@ -4,6 +4,7 @@ import 'package:petology/view/screens/AuthScreens/LoginAndSignUpScreen/LoginScre
 import 'package:petology/view/screens/AuthScreens/LoginAndSignUpScreen/SignUpScreen.dart';
 import 'package:petology/view/screens/HomeScreen/AboutScreen/AboutScreen.dart';
 import 'package:petology/view/screens/HomeScreen/AdaptionScreen/Adaption.dart';
+import 'package:petology/view/screens/HomeScreen/AdaptionScreen/RequestScreen.dart';
 import 'package:petology/view/widgets/AboutWidegts/SectionFive.dart';
 import 'package:petology/view/widgets/AboutWidegts/SectionFour.dart';
 import 'package:petology/view/widgets/AuthWidgets/LoginScreen/MenuItem.dart';
@@ -83,12 +84,29 @@ class _HeaderState extends State<Header> {
 
                   ),
                   MenuItem(title: 'Services'),
-                  MenuItem(title: 'Request'),
+                  MenuItem(title: 'Request',
+                    onTap: ()
+                    {
+                      setState(() {
+                        if (token == null) {
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => LoginScreen()));
+                        } else {
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => RequestScreen()));
+                        }
+                      });
+                    },
+                  ),
                 ],
               ),
             ),
           ),
-          if (token != null)
+          if (token == null)
             Row(
               children: [
                 CustomButton(
